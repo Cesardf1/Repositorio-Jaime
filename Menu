@@ -1,0 +1,51 @@
+#include <LiquidCrystal.h>
+
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+#define botaoMov 10
+#define botaoConf 9
+int pressionadoMov = 0;
+int pressionadoConf = 0;
+int linha = 0;
+
+void setup() {
+  
+  lcd.begin(16, 2);
+  lcd.print("-->Jogar");
+  lcd.setCursor(0,1);
+  lcd.print("   Sobre");
+  pinMode(botaoMov, INPUT);
+  pinMode(botaoConf, INPUT);
+}
+
+void loop() {
+  pressionadoMov = digitalRead(botaoMov);
+  pressionadoConf = digitalRead(botaoConf);
+  if (pressionadoMov == HIGH){
+    delay(300);
+    lcd.setCursor(0, linha);
+    lcd.print("   ");
+    linha++;
+    if(linha ==2){
+      linha =0;
+    }
+    lcd.setCursor(0, linha);
+	lcd.print("-->");
+  }
+  if (pressionadoConf == HIGH){
+    delay(300);
+    switch(linha){
+      case 0:
+      	lcd.clear();
+      	lcd.print("Em Progresso");
+      	break;
+      case 1:
+      	lcd.clear();
+      	lcd.print("Tambem Esta");
+      	break;
+    }
+  
+  }
+   
+      
+  }
